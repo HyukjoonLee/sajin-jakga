@@ -44,6 +44,37 @@ Do not commit:
 - `.DS_Store`
 - log files
 
+## GitHub Workflow And Permissions
+
+The usual branch flow is:
+
+```text
+develop -> main
+```
+
+Pull requests are optional for this solo project. Use PRs only when the user explicitly wants a PR-based review flow.
+
+`main` may be protected on GitHub to prevent accidental direct pushes. Recommended branch protection settings:
+
+- restrict direct pushes to `main`
+- require CI status checks to pass before updating `main`, if using protected updates
+- do not allow bypassing protection rules if the goal is to prevent accidental direct pushes
+
+Agents must get explicit user approval before running any command that changes repository or remote state, including:
+
+- `git add`
+- `git commit`
+- `git push`
+- branch creation, deletion, or switching for workflow changes
+- pull request creation
+- merging branches
+- tagging releases
+- force push or history rewrite operations
+
+Never force push, delete branches, rewrite history, or bypass branch protection unless the user explicitly asks for that exact action.
+
+Commit messages should be written in Korean whenever possible. A short conventional prefix such as `feat:`, `fix:`, `docs:`, `chore:` may be used, but the subject should preferably be Korean.
+
 ## Rhymix Config
 
 `files/config/config.php` is generated at container startup by:
