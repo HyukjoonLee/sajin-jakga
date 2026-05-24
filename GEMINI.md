@@ -24,6 +24,25 @@
   - `nginx/nginx.conf`, `php.ini`, `.dockerignore`, `README.md`
   - `AGENTS.md`, `GEMINI.md`
 
+## 3-1. GitHub 워크플로우 및 권한
+- 기본 브랜치 흐름은 `develop -> main` 입니다.
+- 이 프로젝트는 1인 프로젝트이므로 Pull Request는 필수가 아니며, 사용자가 PR 기반 리뷰 흐름을 명시적으로 원할 때만 사용합니다.
+- `main` 브랜치는 실수로 직접 push하는 것을 막기 위해 GitHub Branch Protection Rule로 보호할 수 있습니다.
+- 권장 보호 설정:
+  - `main` 직접 push 제한
+  - 보호된 업데이트를 사용할 경우 CI 상태 체크 통과 필수
+  - 실수 방지를 위해 관리자/소유자 bypass도 제한
+- Gemini는 저장소 상태나 원격 상태를 변경하는 작업 전 반드시 사용자에게 명시적 동의를 받아야 합니다.
+- 명시적 동의가 필요한 작업:
+  - `git add`, `git commit`, `git push`
+  - 브랜치 생성, 삭제, 전환
+  - Pull Request 생성
+  - 브랜치 병합
+  - 태그 생성 및 릴리스 작업
+  - force push, history rewrite, branch protection 우회
+- 사용자가 정확히 요청하지 않는 한 force push, 브랜치 삭제, 히스토리 재작성, 보호 규칙 우회는 수행하지 않습니다.
+- 커밋 메시지는 가능한 한 한글로 작성합니다. 필요하면 `feat:`, `fix:`, `docs:`, `chore:` 같은 짧은 prefix는 사용할 수 있지만 제목 본문은 한글을 우선합니다.
+
 ## 4. 인프라 검증 및 보안 기준
 - **Port Binding**: 외부 관리 툴용 포트(MySQL 3307, Redis 6380)는 반드시 `127.0.0.1`에 바인딩되어야 합니다.
 - **Healthcheck**: MySQL과 Redis는 `healthcheck`가 필수이며, 앱 서비스는 DB와 Redis가 모두 준비된 후(`service_healthy`) 실행되어야 합니다.
