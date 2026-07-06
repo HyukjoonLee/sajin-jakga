@@ -32,7 +32,7 @@
     "enshrined/svg-sanitize": "0.*",
     "ezyang/htmlpurifier": "4.16.*",
     "google/auth": "1.26.*",
-    "guzzlehttp/guzzle": "7.8.*",
+    "guzzlehttp/guzzle": "7.12.*",
     "guzzlehttp/psr7": "2.12.*",
     "jbbcode/jbbcode": "1.4.*",
     "leafo/lessphp": "dev-master",
